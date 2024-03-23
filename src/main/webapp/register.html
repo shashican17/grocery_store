@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="register.css">
+  <title>Register</title>
+	    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var userType = document.getElementById("userType").value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Validation for email format
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!email.match(emailPattern)) {
+                errorMessage.textContent = "Invalid email address";
+                return false;
+            }
+
+            // Validation for password strength (minimum 8 characters, at least one uppercase letter, one lowercase letter, and one number)
+            var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!password.match(passwordPattern)) {
+                errorMessage.textContent = "Password must be at least 8 characters, with one uppercase letter, one lowercase letter, and one number.";
+                return false;
+            }
+
+            if (username === "" || password === "" || email === "" || userType === "") {
+                errorMessage.textContent = "All fields are required";
+                return false;
+            }
+
+            errorMessage.textContent = ""; // Clear any previous error message
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="Register" method="post" onsubmit="return validateForm()">
+                    <h2>Register</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="text" id="username" name="username" required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="user_type">
+                        <label for="userType">User Type:</label>
+                        <select id="userType" name="userType" required>
+                            <option value="buyer">Buyer</option>
+                            <option value="shopkeeper">Shopkeeper</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button id="register">Register</button>
+                    <div class="register">
+                        <p>Already have an account <a href="index.html">Log in</a></p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    </body>
+    </html>
